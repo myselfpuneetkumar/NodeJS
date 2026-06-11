@@ -31,10 +31,10 @@ http.createServer((req, resp) => {
                 let readableData = queryString.parse(rawData)
                 console.log(readableData);
                 resp.write("ok")
-                resp.writeHead(200, { 'content-type': 'text/html' })
-               
-                resp.end(`Data Submitted Successfully`,readableData.name);
             })
+            resp.writeHead(200, { 'content-type': 'text/html' })
+           
+            resp.end(`Data Submitted Successfully`);
         }
         else {
             resp.end();
