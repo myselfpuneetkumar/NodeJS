@@ -1,29 +1,42 @@
 const http = require('http')
 const fs = require('fs')
+const queryString = require('querystring')
 
 
 
-http.createServer((req,resp)=>{
-    fs.readFile('html/form.html','utf-8',(err,data)=>{
-        
-        if(err){
-            resp.writeHead(500,{'content-type':'text/plain'})
+http.createServer((req, resp) => {
+    fs.readFile('html/form.html', 'utf-8', (err, data) => {
+
+        if (err) {
+            resp.writeHead(500, { 'content-type': 'text/plain' })
             resp.write("internal server error")
             resp.end();
             return;
         }
 
-        if(req.url=='/'){
-            resp.writeHead(200,{'content-type':'text/html'})
+        if (req.url == '/') {
+            resp.writeHead(200, { 'content-type': 'text/html' })
             resp.write(data);
             resp.end();
             return;
         }
-        else if(req.url == '/submit'){
-            resp.write("Data Submitted Successfully")
-            resp.end();
+        else if (req.url == '/submit') {
+            
+            let dataBody = [];
+            req.on('data',(chunk)=> {
+                dataBody.push(chunk);
+            })
+            req.on('end',()=>{
+                let rawData = Buffer.concat(dataBody).toString();
+                let readableData = queryString.parse(rawData)
+                console.log(readableData);
+                resp.write("ok")
+                resp.writeHead(200, { 'content-type': 'text/html' })
+               
+                resp.end(`Data Submitted Successfully`,readableData.name);
+            })
         }
-        else{
+        else {
             resp.end();
         }
     })
