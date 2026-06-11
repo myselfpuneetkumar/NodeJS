@@ -20,7 +20,7 @@ http.createServer((req,resp)=>{
             return;
         }
         else if(req.url == '/submit'){
-            resp.write("Data Submitted")
+            resp.write("Data Submitted Successfully")
             resp.end();
         }
         else{
