@@ -1,6 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const queryString = require('querystring')
+const { log } = require('console')
 
 
 
@@ -30,8 +31,25 @@ http.createServer((req, resp) => {
                 let rawData = Buffer.concat(dataBody).toString();
                 let readableData = queryString.parse(rawData)
                 console.log(readableData);
-                resp.write("ok")
+                let dataString = "my name is "+readableData.name+" my email is "+readableData.email;
+                console.log(dataString);
+
+                //sync method
+                // fs.writeFileSync("text/"+readableData.name+".txt",dataString)
+                // console.log("Successfully created");
+
+                fs.writeFile("text/"+readableData.name+".txt",dataString,'utf-8',(err,data)=>{
+                if(err){
+                    resp.end("internal server error");
+                    return false;
+                }
+                else{
+                    console.log("Successfully created");
+                }
+                })
+                
             })
+
             resp.writeHead(200, { 'content-type': 'text/html' })
            
             resp.end(`Data Submitted Successfully`);
