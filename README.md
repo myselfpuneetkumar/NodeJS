@@ -1,31 +1,21 @@
 # NodeJS 2026
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load JS In Html</title>
-</head>
+   
+    
 
-<body>
-    <h1>This is load in html</h1>
-    <button>click me!!!</button>
-    <input type="text">
-    <input type="password">
+<h1>------------Topics--------------</h1>
+<ul>
+<li>Command line Input</l1>
+<li>html loading in js</l1>
+<li>-- form in html & post method</l1>
+<li>Handle from request data</l1>
+<li>Create file with Requested Data</l1>
+<li>AsyncVSsync Method</l1>
+<li>How Nodejs work</l1>
+<li>javascript code>>callstack[main()]>>nodeApi>>EventLoop[Callback Queue]>>output</l1>
+<li>javascript code>>callstack[main()]>>output</l1>
 
-------------Topics--------------
-
-Command line Input
-html loading in js
--- form in html & post method
-Handle from request data
-Create file with Requested Data
-AsyncVSsync Method
-How Nodejs work
-javascript code>>callstack[main()]>>output
-javascript code>>callstack[main()]>>nodeApi>>EventLoop[Callback Queue]>>output
-
+</ul>
 Modules And Routes
-</body>
+
 
 
