@@ -8,6 +8,8 @@ app.get('/',(req,resp)=>{
     // resp.send("Home Page");
     resp.render('home.ejs',{name:'puneet Kuamar',ytchannel:'techadii'})
 
+})
+app.listen(5500)
 
     app.get('/add-user',(req,resp)=>{
 resp.render('adduser')
@@ -16,4 +18,8 @@ resp.render('adduser')
 resp.render('submituser',(req.body))
 console.log(req.body)
     })
-}).listen(5500)
+
+    app.get('/user',(req,resp)=>{
+        const users = ['puneet','daksh','nisha','buggu'];
+        resp.render('users',{users:users,isLogin:false})
+    })
