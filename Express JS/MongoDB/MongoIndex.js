@@ -7,6 +7,7 @@ const url = "mongodb://localhost:27017/new"
 const client = new MongoClient(url);
 const app = express();
 
+app.use(express.urlencoded({extended:true}))
 app.set('view engine','ejs')
 client.connect().then((connection)=>{
     const db =  connection.db(dbName)
@@ -20,6 +21,18 @@ client.connect().then((connection)=>{
         const collection = db.collection('classes')
         const result = await collection.find().toArray();
         res.render('students',{result:result})
+    })
+
+    app.get('/add',(req,res)=>{
+        
+        res.render('add-student')
+    })
+    app.post('/add-data',async(req,res)=>{
+              const collection = db.collection('classes');
+              const result = await collection.insertOne(req.body)
+
+            console.log(result);
+        res.send("data sends");
     })
 })
 
