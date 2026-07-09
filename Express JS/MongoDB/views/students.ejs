@@ -10,12 +10,16 @@
 
     <table border="2px solid black"><tr>
         <th>name</th>
+        <th>logo</th>
         <th>Link</th>
+        <th>Options</th>
         </tr>
         <% result.forEach(Students=>{ %>
             <tr>
           <td><%= Students.name %></td>  
+          <td><%= Students.logo %></td>  
           <td><%= Students.link %></td>  
+          <td><a href="/ui/delete/<%= Students._id %> ">Delete</a></td>  
         </tr>
        <% }) %>
 
