@@ -83,7 +83,19 @@ client.connect().then((connection)=>{
         const result = await collection.findOne({_id:new ObjectId(id)})
         console.log(id);
         
-        resp.render('update-student',result)
+        resp.render('update-student',{result:result})
+    })
+    app.get("/student/:id",async (req,resp)=>{
+        const id = req.params.id
+        const collection = db.collection('classes')
+        const result = await collection.findOne({_id:new ObjectId(id)})
+        console.log(id);
+        
+        resp.send({
+            message:"Update successfully",
+            success:'true',
+            result:result
+        })
     })
 })
 
