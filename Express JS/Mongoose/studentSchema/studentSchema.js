@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
   const Schema = mongoose.Schema({
     name:String,
+    age: Number,
     email:String,
-     age: Number,
  })
 
  export default Schema ;

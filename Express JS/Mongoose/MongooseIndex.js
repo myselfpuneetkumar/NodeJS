@@ -9,32 +9,42 @@ await  mongoose.connect("mongodb://localhost:27017/college").then(()=>{
    console.log("-------------Connected-----------");
    
 })
-app.use(express.json)
+app.use(express.json());
 
-app.get('/',async(req,response)=>{
+app.get('/',async(req,respo)=>{
    console.log("route is / ");
-   
-   // const studentModels = await studentModel.find();
-   // response.send(studentModels)
-   // console.log(studentModels);
-   
 
-
+   const studentModels = await studentModel.find();
+   console.log(studentModels);
+   respo.send(studentModels)
+   
+   
+   
 })
 
-
-// app.post("/save", (req,resp)=>{
-//    // let data = req.body
-//    resp.send({
-//       message:"done",
-//       success:true,
+app.post("/save", async (req,resp)=>{
+   // let data = req.body
+   const {name,email,age} = req.body;
+   if(!req.body || !name || !email || !age){
+      resp.send({
+      message:"not submitted",
+      success:false,
       
-//    })
-//    // console.log(data);
-   
-// })
+   })
+   return false;
+   }
 
-app.listen(4500);
+   let studentData = await studentModel.create(req.body);
+   resp.send({
+      message:"done",
+      success:true,
+      
+   })
+ 
+   
+})
+
+app.listen(5500);
 
 
 
