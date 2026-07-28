@@ -44,6 +44,38 @@ app.post("/save", async (req,resp)=>{
    
 })
 
+
+app.put('/update/:id',async (req,resp)=>{
+   const id = req.params.id;
+console.log(id,req.body);
+
+let update = await studentModel.findByIdAndUpdate(id,{
+   ...req.body
+})
+
+   resp.send({
+      message:"updated successfully",
+      success:true,
+      info:update
+      
+   })
+})
+
+app.delete('/delete/:id',async (req,resp)=>{
+   const id = req.params.id;
+console.log(id,req.body);
+
+const deleteStudent = await studentModel.findByIdAndDelete(id,{
+   ...req.body
+})
+
+   resp.send({
+      message:"updated successfully",
+      success:true,
+      info:deleteStudent
+      
+   })
+})
 app.listen(5500);
 
 
