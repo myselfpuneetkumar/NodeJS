@@ -1,8 +1,15 @@
 //
 import express from "express";
+// import session from 'express-session'
 const app = express();
 app.use(express.urlencoded({extended:true}))
 app.set("view engine",'ejs')
+// app.use(session({
+//     secret:'apple',
+// }))
+
+
+
 app.get('/login',(req,resp)=>{
     resp.render('login')
 })
